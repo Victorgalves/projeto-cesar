@@ -21,19 +21,27 @@ class Cadastro:
         try:
             with open("cadastro_data.txt", "r") as arquivo:
                 for linha in arquivo:
-                    email, senha = linha.strip().split("\t")
-                    self.items[email] = []
+                    values = linha.strip().split("\t")
+                    if len(values) == 2:
+                        email, senha = values
+                        self.items[email] = []
+                        print("Cadastro carregado com sucesso!")       
         except FileNotFoundError:
             # Caso o arquivo não exista, cria um novo arquivo vazio
             with open("cadastro_data.txt", "w") as arquivo:
                 pass
+
 
     def cadastro_turma(self):
         qnt_alunos = int(input("Quantos alunos vão participar da turma? "))
         codigo = input("Digite o código da turma: ")
         self.items[self.email] = [qnt_alunos, codigo]
         print("Código criado com sucesso!")
-        self.salvar_cadastro()
+        self.salvar_cadastro_turma(qnt_alunos, codigo)
+
+    def salvar_cadastro_turma(self, qnt_alunos, codigo):
+        with open("cadastro_data.txt", "a") as arquivo:
+            arquivo.write(f"Email: {self.email}\tQuantidade de Alunos: {qnt_alunos}\tCódigo: {codigo}\n")
 
     def verificar_codigo(self):
         codigo_digitado = ""
@@ -43,10 +51,13 @@ class Cadastro:
                 print("Código inválido!")
         print("Entrada com sucesso!")
 
-# Exemplo de uso:
-cadastro = Cadastro()
-cadastro.carregar_cadastros()
-cadastro.criar_cadastroProf()
 
+# Exemplo de uso:
+while True:
+    cadastro = Cadastro()
+    cadastro.carregar_cadastros()
+    cadastro.criar_cadastroProf()
+    cadastro.cadastro_turma()
+    cadastro.verificar_codigo()
 
             
