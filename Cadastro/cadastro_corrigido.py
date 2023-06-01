@@ -11,18 +11,23 @@ class Cadastro:
         else:
             self.items[self.email] = []
             print("Email cadastrado com sucesso")
-            self.salvar_cadastro()
+            self.salvar_cadastro(senha)
 
-    def salvar_cadastro(self):
+    def salvar_cadastro(self, senha):
         with open("cadastro_data.txt", "a") as arquivo:
             arquivo.write(f"Email: {self.email}\tSenha: {senha}\n")
 
     def carregar_cadastros(self):
-        with open("cadastro_data.txt", "r") as arquivo:
-            for linha in arquivo:
-                email, senha = linha.strip().split("\t")
-                self.items[email] = []
-        
+        try:
+            with open("cadastro_data.txt", "r") as arquivo:
+                for linha in arquivo:
+                    email, senha = linha.strip().split("\t")
+                    self.items[email] = []
+        except FileNotFoundError:
+            # Caso o arquivo não exista, cria um novo arquivo vazio
+            with open("cadastro_data.txt", "w") as arquivo:
+                pass
+
     def cadastro_turma(self):
         qnt_alunos = int(input("Quantos alunos vão participar da turma? "))
         codigo = input("Digite o código da turma: ")
@@ -38,8 +43,10 @@ class Cadastro:
                 print("Código inválido!")
         print("Entrada com sucesso!")
 
+# Exemplo de uso:
 cadastro = Cadastro()
 cadastro.carregar_cadastros()
 cadastro.criar_cadastroProf()
+
 
             
