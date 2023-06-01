@@ -16,4 +16,14 @@ class Cadastro:
         qnt_alunos = int(input("Quantos alunos vão participar da turma? "))
         codigo = input("Digite o código da turma: ")
         self.items[self.email] = [qnt_alunos, codigo]
-        
+        print("Código criado com sucesso!")
+
+    def verificar_codigo(self):
+        codigo_digitado = ""
+        while codigo_digitado != self.items[self.email][1]:
+            codigo_digitado = input("Digite o código da turma: ")
+            if codigo_digitado != self.items[self.email][1]:
+                print("Código inválido!")
+        print("Entrada com sucesso!")
+
+            
