@@ -11,11 +11,17 @@ class Cadastro:
         else:
             self.items[self.email] = []
             print("Email cadastrado com sucesso")
-            self.salvar_cadastro(senha)
+            try:
+                self.salvar_cadastro(senha)
+            except Exception as e:
+                print("Erro ao salvar cadastro:", str(e))
 
     def salvar_cadastro(self, senha):
-        with open("cadastro_data.txt", "a") as arquivo:
-            arquivo.write(f"Email: {self.email}\tSenha: {senha}\n")
+        try:
+            with open("cadastro_data.txt", "a") as arquivo:
+                arquivo.write(f"Email: {self.email}\tSenha: {senha}\n")
+        except Exception as e:
+            print("Erro ao salvar cadastro:", str(e))
 
     def carregar_cadastros(self):
         try:
@@ -25,32 +31,44 @@ class Cadastro:
                     if len(values) == 2:
                         email, senha = values
                         self.items[email] = []
-                        print("Cadastro carregado com sucesso!")       
+                        print("Cadastro carregado com sucesso!")
         except FileNotFoundError:
             # Caso o arquivo não exista, cria um novo arquivo vazio
             with open("cadastro_data.txt", "w") as arquivo:
                 pass
 
-
     def cadastro_turma(self):
-        qnt_alunos = int(input("Quantos alunos vão participar da turma? "))
+        try:
+            qnt_alunos = int(input("Quantos alunos vão participar da turma? "))
+        except ValueError:
+            print("Quantidade de alunos inválida. Digite um número inteiro.")
+            return
+
         codigo = input("Digite o código da turma: ")
         self.items[self.email] = [qnt_alunos, codigo]
         print("Código criado com sucesso!")
-        self.salvar_cadastro_turma(qnt_alunos, codigo)
+        try:
+            self.salvar_cadastro_turma(qnt_alunos, codigo)
+        except Exception as e:
+            print("Erro ao salvar cadastro da turma:", str(e))
 
     def salvar_cadastro_turma(self, qnt_alunos, codigo):
-        with open("cadastro_data.txt", "a") as arquivo:
-            arquivo.write(f"Email: {self.email}\tQuantidade de Alunos: {qnt_alunos}\tCódigo: {codigo}\n")
+        try:
+            with open("cadastro_data.txt", "a") as arquivo:
+                arquivo.write(f"Email: {self.email}\tQuantidade de Alunos: {qnt_alunos}\tCódigo: {codigo}\n")
+        except Exception as e:
+            print("Erro ao salvar cadastro da turma:", str(e))
 
     def verificar_codigo(self):
-        codigo_digitado = ""
-        while codigo_digitado != self.items[self.email][1]:
-            codigo_digitado = input("Digite o código da turma: ")
-            if codigo_digitado != self.items[self.email][1]:
-                print("Código inválido!")
-        print("Entrada com sucesso!")
-
+        try:
+            codigo_digitado = ""
+            while codigo_digitado != self.items[self.email][1]:
+                codigo_digitado = input("Digite o código da turma: ")
+                if codigo_digitado != self.items[self.email][1]:
+                    print("Código inválido!")
+            print("Entrada com sucesso!")
+        except KeyError:
+            print("Email não encontrado.")
 
 # Exemplo de uso:
 while True:
@@ -59,5 +77,6 @@ while True:
     cadastro.criar_cadastroProf()
     cadastro.cadastro_turma()
     cadastro.verificar_codigo()
+
 
             
