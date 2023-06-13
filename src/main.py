@@ -7,7 +7,7 @@ while True:
         menu = m.menu_principal()
     except ValueError:
         continue
-    except:
+    except EOFError:
         break
 
     opcao = {
