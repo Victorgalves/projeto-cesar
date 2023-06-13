@@ -1,2 +1,0 @@
-Email: teste	Senha: 123
-Email: teste	Código: abc
