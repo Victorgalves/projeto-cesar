@@ -17,7 +17,7 @@ def menu_principal():
                         if segunda_escolha_do_usuario==1:
                               cadastro.verificar_login_professor()
                     except FileNotFoundError:
-                        print('Nenhum login salvo.')
+                        print('Cadastro não econtrado.\nPrimeiro, crie um cadastro.')
                     if segunda_escolha_do_usuario==2:                
                         cadastro.criar_cadastroProf()
                         cadastro.cadastro_turma()
