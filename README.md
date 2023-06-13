@@ -14,8 +14,9 @@
         <li>Certifique-se que você possui o Python instalado em seu computador</li>
         <li>Abra a pasta do repositório do seu computador no VSCode</li>
         <li>Execute o programa selecionando a opção "Run" no menu superior do VSCode</li>
-        <li>Você será apresentado ao menu principal do sistema, onde poderá ser feito o cadastro do professor e da turma.</li>
-        <li>Em seguida, os aluno poderão responder ao quiz, jogar o jogo, e responder a outro quiz quando terminarem.</li>
+        <li>Você será apresentado ao menu principal do sistema, onde poderá ser selecinada a opção de entrada: professor ou aluno.</li>
+        <li>Quando o professor realizar o cadastro, poderá criar o código da turma, que será utilizado pelos alunos quando entrarem na plataforma. Também poderá ver quantos alunos aprenderam com o jogo.</li>
+        <li>Caso seja um aluno fazendo login, será necessário ele informar o código da turma. Feito isso, poderá jogar o jogo e responder ao quiz quando terminar.</li>
         <li>No fim, é possível ver um feedback em relação ao conhecimento dos alunos e se o manguebeat já foi apresentado pra eles na escola ou não.</li>
     </ul>
 
