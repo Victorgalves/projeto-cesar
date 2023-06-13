@@ -31,6 +31,8 @@
         <li><a href="https://github.com/vinipetribu">Vinicius Petribu</a></li>
         <li><a href="https://github.com/VIESAFE">Vinicius Ferraz</a></li>
         <li><a href="https://github.com/caiofoonseca">Caio Fonseca</a></li>
+        <li><a href="https://github.com/luizlins">Luiz Lins</a></li>
+        <li><a href="https://github.com/belli5">Gabriel Belliato</a></li>
     </ul>
 
 <h2>Conclusão</h2>
