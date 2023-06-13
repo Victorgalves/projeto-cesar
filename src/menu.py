@@ -13,8 +13,11 @@ def menu_principal():
                 if primeira_escolha_do_usuario == 1:
                     print("Digite o número da ação que deseja realizar: \n[1]Fazer Login \n[2]Criar Login\n")
                     segunda_escolha_do_usuario= int(input())
-                    if segunda_escolha_do_usuario==1:
-                          cadastro.verificar_login_professor()
+                    try:
+                        if segunda_escolha_do_usuario==1:
+                              cadastro.verificar_login_professor()
+                    except FileNotFoundError:
+                        print('Nenhum login salvo.')
                     if segunda_escolha_do_usuario==2:                
                         cadastro.criar_cadastroProf()
                         cadastro.cadastro_turma()
