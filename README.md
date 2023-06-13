@@ -30,6 +30,7 @@
         <li><a href="https://github.com/Victorgalves">Victor Guilherme Alves</a></li>
         <li><a href="https://github.com/vinipetribu">Vinicius Petribu</a></li>
         <li><a href="https://github.com/VIESAFE">Vinicius Ferraz</a></li>
+        <li><a href="https://github.com/caiofoonseca">Caio Fonseca</a></li>
     </ul>
 
 <h2>Conclusão</h2>
