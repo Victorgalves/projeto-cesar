@@ -12,6 +12,8 @@ class Cadastro:
             self.items[self.email] = []
             print("Email cadastrado com sucesso")
             self.salvar_cadastro(senha)
+            return self.email
+
 
     def salvar_cadastro(self, senha):
         with open("cadastro_data.txt", "a") as arquivo:
@@ -31,25 +33,25 @@ class Cadastro:
             with open("cadastro_data.txt", "w") as arquivo:
                 pass
 
-
     def cadastro_turma(self):
-        qnt_alunos = int(input("Quantos alunos vão participar da turma? "))
         codigo = input("Digite o código da turma: ")
-        self.items[self.email] = [qnt_alunos, codigo]
+        self.items[self.email].append(codigo)  # Usamos append() para adicionar o código à lista existente
         print("Código criado com sucesso!")
-        self.salvar_cadastro_turma(qnt_alunos, codigo)
+        self.salvar_cadastro_turma(codigo)
 
-    def salvar_cadastro_turma(self, qnt_alunos, codigo):
+
+
+    def salvar_cadastro_turma(self, codigo):
         with open("cadastro_data.txt", "a") as arquivo:
-            arquivo.write(f"Email: {self.email}\tQuantidade de Alunos: {qnt_alunos}\tCódigo: {codigo}\n")
+            arquivo.write(f"Email: {self.email}\tCódigo: {codigo}\n")
 
-    def verificar_codigo(self):
-        codigo_digitado = ""
-        while codigo_digitado != self.items[self.email][1]:
-            codigo_digitado = input("Digite o código da turma: ")
-            if codigo_digitado != self.items[self.email][1]:
-                print("Código inválido!")
-        print("Entrada com sucesso!")
+    def verificar_codigo_turma(cadastro):
+        codigo_turma = input("Digite o código da turma: ")
+        if codigo_turma in cadastro.items.get(cadastro.email, []):
+            print("Acesso permitido!")
+        else:
+            print("Código inválido!")
+
 
 
     
