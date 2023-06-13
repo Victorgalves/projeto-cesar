@@ -10,7 +10,12 @@ def menu_principal():
         primeira_escolha_do_usuario = int(input())
 
         if primeira_escolha_do_usuario == 1:
-            cadastro.criar_cadastroProf()
-            cadastro.cadastro_turma()
+            print("Digite o número da ação que deseja realizar: \n[1]Fazer Login \n[2]Criar Login\n")
+            segunda_escolha_do_usuario= int(input())
+            if segunda_escolha_do_usuario==1:
+                  cadastro.verificar_login_professor()
+            if segunda_escolha_do_usuario==2:                
+                cadastro.criar_cadastroProf()
+                cadastro.cadastro_turma()
         elif primeira_escolha_do_usuario == 2:
-            cadastro.verificar_codigo_turma()
+                cadastro.verificar_codigo_turma()

@@ -6,6 +6,7 @@ class Cadastro:
     def criar_cadastroProf(self):
         self.email = input("Digite seu email: ")
         senha = input("Digite sua senha: ")
+        self.carregar_cadastros()  # Carregar os dados do arquivo
         if self.email in self.items:
             print("Email já existe")
         else:
@@ -13,6 +14,7 @@ class Cadastro:
             print("Email cadastrado com sucesso")
             self.salvar_cadastro(senha)
             return self.email
+
 
 
     def salvar_cadastro(self, senha):
@@ -29,28 +31,40 @@ class Cadastro:
                         self.items[email] = []
                         print("Cadastro carregado com sucesso!")       
         except FileNotFoundError:
-            # Caso o arquivo não exista, cria um novo arquivo vazio
+     
             with open("cadastro_data.txt", "w") as arquivo:
                 pass
 
     def cadastro_turma(self):
         codigo = input("Digite o código da turma: ")
-        self.items[self.email].append(codigo)  # Usamos append() para adicionar o código à lista existente
+        self.items[self.email].append(codigo)  
         print("Código criado com sucesso!")
         self.salvar_cadastro_turma(codigo)
-
-
 
     def salvar_cadastro_turma(self, codigo):
         with open("cadastro_data.txt", "a") as arquivo:
             arquivo.write(f"Email: {self.email}\tCódigo: {codigo}\n")
 
-    def verificar_codigo_turma(cadastro):
+    def verificar_codigo_turma(self):
         codigo_turma = input("Digite o código da turma: ")
-        if codigo_turma in cadastro.items.get(cadastro.email, []):
-            print("Acesso permitido!")
-        else:
-            print("Código inválido!")
+        with open("cadastro_data.txt", "r") as arquivo:
+            for linha in arquivo:
+                if f"\tCódigo: {codigo_turma}" in linha:
+                    print("Acesso permitido!")
+                    return
+        print("Código inválido!")
+        
+    def verificar_login_professor(self):
+        email = input("Digite seu email: ")
+        senha = input("Digite sua senha: ")
+        with open("cadastro_data.txt", "r") as arquivo:
+            for linha in arquivo:
+                if f"Email: {email}\tSenha: {senha}" in linha:
+                    print("Entrada com sucesso!")
+                    return
+        print("Entrada inválida!")
+
+
 
 
 
