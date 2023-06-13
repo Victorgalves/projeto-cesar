@@ -46,13 +46,16 @@ class Cadastro:
             arquivo.write(f"Email: {self.email}\tCódigo: {codigo}\n")
 
     def verificar_codigo_turma(self):
-        codigo_turma = input("Digite o código da turma: ")
-        with open("cadastro_data.txt", "r") as arquivo:
-            for linha in arquivo:
-                if f"\tCódigo: {codigo_turma}" in linha:
-                    print("Acesso permitido!")
-                    return
-        print("Código inválido!")
+            codigo_turma = input("Digite o código da turma: ")
+            with open("cadastro_data.txt", "r") as arquivo:
+                for linha in arquivo:
+                    valores = linha.strip().split("\t")
+                    if len(valores) == 2:
+                        email, codigo = valores
+                        if codigo.split(":")[1].strip() == codigo_turma:
+                            print("Acesso permitido!")
+                            return
+            print("Código inválido!")
         
     def verificar_login_professor(self):
         email = input("Digite seu email: ")
